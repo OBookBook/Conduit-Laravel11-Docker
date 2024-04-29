@@ -22,6 +22,12 @@
                 </ul>
                 </div>
 
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @foreach ($articles as $article)
                     <div class="article-preview">
                         <div class="article-meta">
@@ -40,7 +46,7 @@
                             <span>Read more...</span>
                         </a>
                     </div>
-                    @endforeach
+                @endforeach
 
                 <ul class="pagination">
                 <li class="page-item active">
