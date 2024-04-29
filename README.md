@@ -1,68 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+  </a>
+</p>
 
-# 開発環境構築
+# Conduit プロジェクト - Laravel 11 実装
 
-```shell
-./init.sh
-```
+Conduitは、RealWorldプロジェクトの一環として、Medium.comのクローンサイトを作成するためのブログプラットフォームです。このプロジェクトは、実際の世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としています。
 
-# Laravel
-http://localhost:8080/
+## ステップ1: HTMLとCSSの実装 (完了)
 
-# phpmyadmin
-http://localhost:5000/
+以下のページのHTMLとCSSを実装し、ページを作成してください。この段階では機能は実装せず、見た目のみを整えます。
 
+- Home
+- Create/Edit Article
+- Article
 
-# in Container
-```shell
-docker-compose exec api bash
-```
+## ステップ2: 機能の実装 (完了)
 
-# ホットリロード Laravel documents
-https://laravel.com/docs/11.x/
+![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/c45eab78-f9ff-4c2e-b843-16cca7c4d757)
+- Home: `http://localhost:8080/`
 
-# api\vite.config.js
-```js 
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/160969a7-b333-4d68-98e4-47017d25788d)
+- Create Article: `http://localhost:8080/article/create`
 
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
-        }),
-    ],
-    server: {
-        watch: {
-            usePolling: true
-        }
-    }
-});
-```
+![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/41bde55e-3dec-4baf-bbb8-6e3f1f7615f0)
+- Edit Article: `http://localhost:8080/article/1/edit`
 
-or
+![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/20da16af-0cfa-4856-b093-286f8e492647)
+- Article (認証機能や著者、お気に入り機能は実装不要): `http://localhost:8080/article/show/1`
 
-# Laravel + Next.js 開発環境
+## ステップ3: テストコードの作成 (完了)
 
-# Laravel ダウンロード
+ArticleControllerの結合テスト作成
+`api\tests\Feature\ArticleControllerTest.php`
 
 ```shell
-composer create-project laravel/laravel ./api # 最新
-or
-composer create-project laravel/laravel:^9.0 ./api # バージョン指定
+php artisan test
 ```
 
-# Next.js ダウンロード
+## 工夫した点
 
-```shell
-git clone https://github.com/laravel/breeze-next.git ./client # Gitから
-or
-npx create-next-app@latest ./client # 最新
-```
+- **コンポーネントディレクトリの導入**: 
+  - 目的: レイアウトの共通化を通じて、コードの保守性と再利用性を向上させる。
+  - 詳細: `api\resources\views\components` ディレクトリに共通レイアウトコンポーネントを配置。
 
-# Docker 起動
+- **作成ページと編集ページの統合**: 
+  - 目的: 作成ページと編集ページを一つのページに統合し、コードの保守性と再利用性を向上させる。
+
+- **バリデーション機能の実装**: 
+  - 目的: 入力値のバリデーションを実装し、コントローラーとの責務を明確に分ける。
+  - 方法: フォームリクエストを使用。
+
+- **バリデーション時の入力値補完**: 
+  - 目的: ユーザーに対してフィードバックを提供する。
+  - 方法: Bladeテンプレートでバリデーションエラー時に入力値を補完。
+
+# Setup
+
+## Environment
 
 ```shell
 docker-compose up -d
+```
+
+## Seed
+```shell
+docker-compose exec api php artisan migrate --seed
+```
+
+## Laravel
+http://localhost:8080/
+
+## phpmyadmin
+http://localhost:5000/
+
+## Container Shell
+```shell
+docker-compose exec api bash
 ```
