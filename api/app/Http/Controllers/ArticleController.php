@@ -19,6 +19,12 @@ class ArticleController extends Controller
         return view('create_edit_article');
     }
 
+    public function show($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('article', compact('article'));
+    }
+
     public function store(StoreArticleRequest $request)
     {
         Article::create($request->validated());
@@ -36,5 +42,12 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $article->update($request->validated());
         return redirect()->route('article.index')->with('success', '記事が正常に更新されました。');
+    }
+    
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect()->route('article.index')->with('success', '記事が正常に削除されました。');
     }
 }

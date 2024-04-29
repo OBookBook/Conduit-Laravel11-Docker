@@ -40,7 +40,7 @@
                                 <i class="ion-heart"></i> 29
                             </button>
                         </div>
-                        <a href="/article/{{ $article->id }}" class="preview-link">
+                        <a href="/article/show/{{ $article->id }}" class="preview-link">
                             <h1>{{ $article->title }}</h1>
                             <p>{{ $article->body }}</p>
                             <span>Read more...</span>

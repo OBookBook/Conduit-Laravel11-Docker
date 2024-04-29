@@ -3,7 +3,7 @@
     <div class="article-page">
     <div class="banner">
         <div class="container">
-        <h1>How to build webapps that scale</h1>
+        <h1>{{ $article->title }}</h1>
 
         <div class="article-meta">
             <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
@@ -20,12 +20,16 @@
             <i class="ion-heart"></i>
             &nbsp; Favorite Post <span class="counter">(29)</span>
             </button>
-            <button class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('article.edit', $article->id) }}" class="btn btn-sm btn-outline-secondary">
             <i class="ion-edit"></i> Edit Article
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-            <i class="ion-trash-a"></i> Delete Article
-            </button>
+            </a>
+            <form action="{{ route('article.destroy', $article->id) }}" method="POST" class="btn btn-sm btn-outline-danger">
+                @csrf
+                @method('DELETE')
+                <button type="submit">
+                    <i class="ion-trash-a"></i> Delete Article
+                </button>
+            </form>
         </div>
         </div>
     </div>
@@ -34,7 +38,7 @@
         <div class="row article-content">
         <div class="col-md-12">
             <p>
-            Web development technologies have evolved at an incredible clip over the past few years.
+            {{ $article->body }}
             </p>
             <h2 id="introducing-ionic">Introducing RealWorld.</h2>
             <p>It's a great solution for learning how other frameworks work.</p>
@@ -64,12 +68,16 @@
             <i class="ion-heart"></i>
             &nbsp; Favorite Article <span class="counter">(29)</span>
             </button>
-            <button class="btn btn-sm btn-outline-secondary">
+            <a href="{{ route('article.edit', $article->id) }}" class="btn btn-sm btn-outline-secondary">
             <i class="ion-edit"></i> Edit Article
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-            <i class="ion-trash-a"></i> Delete Article
-            </button>
+            </a>
+            <form action="{{ route('article.destroy', $article->id) }}" method="POST" class="btn btn-sm btn-outline-danger">
+                @csrf
+                @method('DELETE')
+                <button type="submit">
+                    <i class="ion-trash-a"></i> Delete Article
+                </button>
+            </form>
         </div>
         </div>
 
@@ -102,7 +110,7 @@
             </div>
 
             <div class="card">
-            <div class="card-block">
+            <div class "card-block">
                 <p class="card-text">
                 With supporting text below as a natural lead-in to additional content.
                 </p>
