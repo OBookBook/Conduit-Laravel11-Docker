@@ -8,7 +8,7 @@
 
 Conduitは、RealWorldプロジェクトの一環として、Medium.comのクローンサイトを作成するためのブログプラットフォームです。このプロジェクトは、実際の世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としています。
 
-## ステップ1: HTMLとCSSの実装 (完了)
+## UI実装
 
 以下のページのHTMLとCSSを実装し、ページを作成してください。この段階では機能は実装せず、見た目のみを整えます。
 
@@ -16,7 +16,7 @@ Conduitは、RealWorldプロジェクトの一環として、Medium.comのクロ
 - Create/Edit Article
 - Article
 
-## ステップ2: 機能の実装 (完了)
+## 機能実装
 
 ![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/c45eab78-f9ff-4c2e-b843-16cca7c4d757)
 - Home: `http://localhost:8080/`
@@ -30,7 +30,7 @@ Conduitは、RealWorldプロジェクトの一環として、Medium.comのクロ
 ![image](https://github.com/OBookBook/Conduit-Laravel11-Docker/assets/130152109/20da16af-0cfa-4856-b093-286f8e492647)
 - Article (認証機能や著者、お気に入り機能は実装不要): `http://localhost:8080/article/show/1`
 
-## ステップ3: テストコードの作成 (完了)
+## テストコード
 
 ArticleControllerの結合テスト作成
 `api\tests\Feature\ArticleControllerTest.php`
